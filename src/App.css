@@ -1,38 +1,140 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  width: 1200px;
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.table {
+  margin-top: 30px;
+  margin-bottom: 30p;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.table thead {
+  box-shadow: 0px 2px 0 #efefee;
+}
+.table thead th {
+  padding: 20px 15px;
+  text-align: left;
+}
+
+.table tbody tr:nth-child(2n + 1) {
+  background-color: #efefee;
+}
+.table tbody tr:hover {
+  transition: all 0.5s ease;
+  background-color: #e6e6e6;
+}
+
+.table tbody tr td {
+  padding: 20px 15px;
+}
+
+.table tbody tr td span {
+  margin-left: 10px;
+  font-weight: 400;
+  color: rgb(85, 85, 85);
+}
+
+.table tbody tr td button {
+  background-color: #0986cf;
+}
+.table tbody tr td button.btn-delete {
+  background-color: #e7162a;
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 100%;
+  height: 100vh;
+  background-color: #efefee94;
+}
+.popup > div {
+  padding: 50px;
+  width: 35%;
+  background-color: #fff;
+  margin: 80px auto;
+  border-radius: 5px;
+}
+
+.popup form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 50px;
+}
+.popup form input {
+  padding: 7px 15px;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+.popup .container {
+  position: relative;
+}
+.popup .close {
+  border: none;
+  background-color: transparent;
+  font-size: 21px;
+  position: absolute;
+  right: 4%;
+  top: 5%;
+  color: #727272;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.add-new {
+  padding-top: 50px;
+}
+.add-new .btn {
+  padding: 12px 19px;
+  font-size: 16px;
+  background-color: #4285ff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.btn.submit {
+  background-color: #905ff1;
+  padding: 10px 15px;
+}
+
+.response .not-ok {
+  margin-top: 20px;
+  color: #ff2a2a;
+}
+.response .ok {
+  margin-top: 20px;
+  color: #16a90c;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 90%;
   }
 }
