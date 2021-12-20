@@ -42,47 +42,49 @@ function App() {
     const newData = { ...inputData };
     newData[input.name] = input.name === 'summary' ? input.value : Number.parseInt(input.value);
     setInputData(newData);
+    setRes('');
   };
 
-  const handleSubmit = async (e) => {
-    submit(e, 'put');
+  const handleSubmitEdit = async (e) => {
+    e.preventDefault();
+    if (
+      inputData.temperatureC === '' ||
+      inputData.temperatureF === '' ||
+      inputData.summary === ''
+    ) {
+      setRes('Not ok');
+    } else {
+      submit('put');
+    }
+  };
+
+  const handleSubmitNew = (e) => {
+    e.preventDefault();
+    if (
+      inputData.temperatureC === '' ||
+      inputData.temperatureF === '' ||
+      inputData.summary === ''
+    ) {
+      setRes('Not ok');
+    } else {
+      submit('post');
+    }
   };
 
   const handleAddNew = () => {
     setIsVisible(true);
   };
 
-  const handleSubmitNew = (e) => {
-    submit(e, 'post');
-  };
-
-  const submit = async (e, action) => {
-    e.preventDefault();
+  const submit = async (action) => {
     const date = new Date().toISOString();
     const newData = { ...inputData, date };
-    if (newData.temperatureC === '' || newData.temperatureF === '' || newData.summary === '') {
-      setRes('Not ok');
-      return;
-    }
-
     let response;
-    switch (action) {
-      case 'put':
-        response = await axios.put('https://localhost:44331/weatherforecast/put', newData);
-        break;
-      case 'post':
-        response = await axios.post('https://localhost:44331/weatherforecast/post', newData);
-        break;
-      default:
-        setRes('Not ok');
-        break;
+    if (action === 'put') {
+      response = await axios.put('https://localhost:44331/weatherforecast/put', newData);
+    } else if (action === 'post') {
+      response = await axios.post('https://localhost:44331/weatherforecast/post', newData);
     }
     setRes(response.data.res);
-    setInputData({
-      temperatureC: '',
-      temperatureF: '',
-      summary: '',
-    });
   };
 
   return (
@@ -101,7 +103,7 @@ function App() {
         handleClose={handleClose}
         data={inputData}
         handleChange={handleChange}
-        handleSumbit={handleSubmit}
+        handleSumbit={handleSubmitEdit}
         response={res}
       />
     </div>
